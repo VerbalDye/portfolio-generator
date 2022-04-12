@@ -1,14 +1,6 @@
 const inquirer = require("inquirer");
-// const fs = require('fs');
-// const generatePage = require("./src/page-template.js");
-const profileDataArgs = process.argv.slice(2, process.argv.length);
-const [name, github] = profileDataArgs;
-
-// fs.writeFile('./index.html', generatePage(name, github), err => {
-//     if (err) throw new Error(err);
-
-//     console.log('Portfolio complete! Checkout index.html to see the output.')
-// });
+const fs = require('fs');
+const generatePage = require("./src/page-template.js");
 
 const promptUser = () => {
 
@@ -53,7 +45,7 @@ const promptUser = () => {
                 if (confirmAbout) {
                     return true;
                 } else {
-                    return false 
+                    return false
                 }
             }
         }
@@ -130,16 +122,24 @@ const promptProject = portfolioData => {
             default: false
         }
     ])
-    .then(projectData => {
-        portfolioData.projects.push(projectData);
-        if (projectData.confirmAddProject) {
-            return promptProject(portfolioData);
-        } else {
-            return portfolioData;
-        }
-    });
+        .then(projectData => {
+            portfolioData.projects.push(projectData);
+            if (projectData.confirmAddProject) {
+                return promptProject(portfolioData);
+            } else {
+                return portfolioData;
+            }
+        });
 }
 
 promptUser()
     .then(promptProject)
-    .then(portfolioData => console.log(portfolioData));
+    .then(portfolioData => {
+        const pageHTML = generatePage(portfolioData);
+
+        // fs.writeFile('./index.html', pageHTML, err => {
+        //     if (err) throw new Error(err);
+
+        //     console.log('Portfolio complete! Checkout index.html to see the output.')
+        // })
+    });
