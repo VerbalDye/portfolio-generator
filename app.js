@@ -137,9 +137,9 @@ promptUser()
     .then(portfolioData => {
         const pageHTML = generatePage(portfolioData);
 
-        // fs.writeFile('./index.html', pageHTML, err => {
-        //     if (err) throw new Error(err);
+        fs.writeFile('./index.html', pageHTML, err => {
+            if (err) throw new Error(err);
 
-        //     console.log('Portfolio complete! Checkout index.html to see the output.')
-        // })
+            console.log('Portfolio complete! Checkout index.html to see the output.')
+        })
     });
