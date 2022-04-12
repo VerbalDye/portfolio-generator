@@ -135,11 +135,32 @@ const promptProject = portfolioData => {
 promptUser()
     .then(promptProject)
     .then(portfolioData => {
-        const pageHTML = generatePage(portfolioData);
+        return generatePage(portfolioData);
+    })
+    .then(pageHTML => {
+        return writeFile(pageHTML);
+    })
+    .then(writeFileReponse => {
+        console.log(writeFileReponse);
+        return copyFile();
+    })
+    .then(copyFileResponse => {
+        console.log(copyFileResponse);
+    })
+    .catch(err => {
+        console.log(err);
+    })
 
-        fs.writeFile('./index.html', pageHTML, err => {
-            if (err) throw new Error(err);
+        // fs.writeFile('./dist/index.html', pageHTML, err => {
+        //     if (err) throw new Error(err);
 
-            console.log('Portfolio complete! Checkout index.html to see the output.')
-        })
-    });
+        //     console.log('Portfolio complete! Checkout index.html to see the output.')
+
+        //     fs.copyFile("./src/style.css", "./dist/style.css", err => {
+        //         if (err) {
+        //             console.log(err);
+        //             return;
+        //         }
+        //         console.log("Stylesheet copied successfully!");
+        //     });
+        // })
