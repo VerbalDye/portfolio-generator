@@ -6,7 +6,7 @@ You must have Node.JS installed to use this utility.
 https://nodejs.org/en/download/
 
 ## Description
-This is an app that generates the HTML and CSS of a portfolio for you to use from a few simple command line prompts prompts
+This is an Node.JS app that generates the HTML and CSS of a portfolio. Populates porfolio data from a few simple command line prompts.
 
 ## Instructions
 1. Download the repo to you local machine.
