@@ -1,5 +1,5 @@
 const inquirer = require("inquirer");
-const fs = require('fs');
+const { writeFile, copyFile } = require('./utils/generate-site.js')
 const generatePage = require("./src/page-template.js");
 
 const promptUser = () => {
@@ -150,17 +150,3 @@ promptUser()
     .catch(err => {
         console.log(err);
     })
-
-        // fs.writeFile('./dist/index.html', pageHTML, err => {
-        //     if (err) throw new Error(err);
-
-        //     console.log('Portfolio complete! Checkout index.html to see the output.')
-
-        //     fs.copyFile("./src/style.css", "./dist/style.css", err => {
-        //         if (err) {
-        //             console.log(err);
-        //             return;
-        //         }
-        //         console.log("Stylesheet copied successfully!");
-        //     });
-        // })
